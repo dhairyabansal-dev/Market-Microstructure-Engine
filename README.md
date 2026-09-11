@@ -1,46 +1,84 @@
-# Market Microstructure Engine
+# Market Microstructure Engine 📊
 
-A research-grade Python framework for studying market microstructure and execution quality.
+A small Python project for understanding **market microstructure and trade execution** through an order-book simulation.
 
-## What it does
+## What it covers
 
-The engine turns order-book and trade data into measurable execution signals:
-
-**Market Data → Order Book → Microstructure → Execution → Transaction Costs → Analytics**
-
-Core research areas:
 - Bid/ask spread and mid-price
 - Microprice
-- Order-book depth and liquidity
+- Order-book depth
 - Order imbalance
-- Trade-flow metrics
-- VWAP and TWAP execution
+- TWAP and VWAP scheduling
+- Market-order execution
 - Slippage
-- Market impact
 - Implementation shortfall
-- Execution-quality analytics
+- Basic transaction-cost calculations
+- Simple Streamlit dashboard
 
-## Project status
+### Flow
 
-Phase 1 focuses on a deterministic, testable research core. The initial implementation uses in-memory market events so the framework can be tested without depending on a live data vendor.
+```text
+Order Book
+    ↓
+Microstructure Metrics
+    ↓
+Execution Simulation
+    ↓
+Slippage / Costs
+    ↓
+Execution Analysis
+```
 
-## Quick start
+## Run it
 
 ```bash
 python -m venv .venv
-source .venv/bin/activate  # Windows: .venv\\Scripts\\activate
+source .venv/bin/activate        # Windows: .venv\\Scripts\\activate
 pip install -r requirements.txt
+```
+
+Run the tests:
+
+```bash
 pytest
+```
+
+Run the example:
+
+```bash
 python examples/basic_analysis.py
 ```
 
-## Design principles
+Run the dashboard:
 
-1. Keep market-data ingestion separate from quantitative logic.
-2. Make every metric deterministic and unit-testable.
-3. Never hide assumptions about fills, costs, or market impact.
-4. Prefer research transparency over black-box execution models.
+```bash
+streamlit run app.py
+```
 
-## Disclaimer
+## Project structure
 
-This repository is for research and educational purposes. It is not investment advice and does not guarantee execution or trading performance.
+```text
+Market-Microstructure-Engine/
+├── app.py
+├── examples/
+├── src/market_microstructure/
+│   ├── order_book.py
+│   ├── metrics.py
+│   ├── execution.py
+│   ├── strategies.py
+│   └── costs.py
+├── tests/
+├── docs/
+├── requirements.txt
+└── pyproject.toml
+```
+
+## Why I built it
+
+The goal is to move beyond just looking at prices and understand **how liquidity, order-book imbalance and execution costs affect a trade**.
+
+The current version intentionally uses synthetic/in-memory order-book data so the calculations stay easy to inspect and test. A future version can plug in historical Level-2 data.
+
+## Note
+
+This is a research/learning project, not a live trading system or investment advice.
